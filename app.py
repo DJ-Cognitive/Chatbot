@@ -53,7 +53,7 @@ def reply():
     
         # generate probabilities from the model
     input_data = pd.DataFrame([np.array(bag)], dtype=float, index=['input'])
-    results = model.predict([input_data])[0]
+    results = model.predict(input_data)[0]
         
     # filter out predictions below a threshold, and provide intent index
     results = [[i,r] for i,r in enumerate(results) if r>ERROR_THRESHOLD]
