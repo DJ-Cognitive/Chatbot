@@ -6,6 +6,8 @@ import nltk
 from nltk.stem.lancaster import LancasterStemmer
 import pandas as pd
 import tensorflow as tf
+import sys
+import logging
 from keras.models import load_model
 import json 
 with open('final_intents_data.json') as json_data:
@@ -26,6 +28,8 @@ words = model_2['words']
 classes = model_2['classes']
 
 app = Flask(__name__, template_folder='template')
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 @app.route('/')
 def home():
